@@ -1,1 +1,1 @@
-# TelemachusToCosmosLink
+# TelemachusToCosmosRelay

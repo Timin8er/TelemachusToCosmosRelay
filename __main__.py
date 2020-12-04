@@ -2,7 +2,7 @@ from TCL import Downlink
 from . import settings
 import pprint
 
-dl = Downlink(settings.TELEMACHUS_HOST, settings.TELEMACHUS_PORT, 500)
+dl = Downlink(settings.TELEMACHUS_HOST, settings.TELEMACHUS_PORT, settings.FREQUENCY)
 dl.subscribe("v.altitude")
 dl.subscribe("r.resource[LiquidFuel]")
 
