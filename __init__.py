@@ -1,11 +1,12 @@
-# coppied from https://github.com/ec429/konrad/blob/master/downlink.py
-
 import websocket
 import socket
 import json
 import time
+from . import settings
+
 
 class Downlink(object):
+    """initially coppied from https://github.com/ec429/konrad/blob/master/downlink.py"""
 
     def __init__(self, addr, port, rate, logf=None):
         self.uri = "ws://%s:%d/datalink"%(addr, port)
@@ -148,3 +149,10 @@ class Downlink(object):
         # Make sure we disconnect cleanly, or telemachus gets unhappy
         if getattr(self, 'ws', None) is not None:
             self.disconnect()
+
+
+def translate(data:dict, rules):
+    dstring = ''
+    for key, formating in rules.items():
+        dstring += formating.format(data[key])
+    return dstring

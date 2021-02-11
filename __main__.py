@@ -1,11 +1,13 @@
-from TCL import Downlink
+from TCR import Downlink, translate
 from . import settings
 import pprint
 
 dl = Downlink(settings.TELEMACHUS_HOST, settings.TELEMACHUS_PORT, settings.FREQUENCY)
-dl.subscribe("v.altitude")
-dl.subscribe("r.resource[LiquidFuel]")
+for key in settings.SUBSCRIPTIONS:
+    dl.subscribe(key)
 
 while True:
-    d = dl.update()
-    pprint.pprint(d)
+    data = dl.update()
+    if data:
+        print(translate(data, settings.PRINT_TRANSLATION))
+    # pprint.pprint(d)
